@@ -7,10 +7,12 @@ public class Principal{
         Scanner teclado = new Scanner(System.in);
         double cantidad = 0;
         boolean salirMenu = false;
-
+        ConsultaMoneda consulta = new ConsultaMoneda();
+        Moneda moneda;
+        String monedaDestino = null;
+        String pesoMexicano = "MXN";
 
         do {
-            ConsultaMoneda consulta = new ConsultaMoneda();
             System.out.println("""
                               *************************************************************
                               Sea bienvenido/a al  conversor de moneda =]
@@ -29,40 +31,22 @@ public class Principal{
                               *************************************************************""");
             switch (teclado.next()){
                 case "1":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    Moneda moneda = consulta.buscaMoneda("MXN","ARS",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "ARS";
                     break;
                 case "2":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    moneda = consulta.buscaMoneda("MXN","BOB",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "BOB";
                     break;
                 case "3":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    moneda = consulta.buscaMoneda("MXN","BRL",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "BRL";
                     break;
                 case "4":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    moneda = consulta.buscaMoneda("MXN","CLP",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "CLP";
                     break;
                 case "5":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    moneda = consulta.buscaMoneda("MXN","COP",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "COP";
                     break;
                 case "6":
-                    System.out.println("Ingrese el valor que desea convertir:");
-                    cantidad = teclado.nextDouble();
-                    moneda = consulta.buscaMoneda("MXN","USD",cantidad);
-                    System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
+                    monedaDestino = "USD";
                     break;
                 case "7":
                     System.out.println("Seguro que deseas salir, confirme con un Si o un No");
@@ -73,6 +57,10 @@ public class Principal{
                 default:
                     System.out.println("La opcion seleccionado no es valida");
             }
+            System.out.println("Ingrese el valor que desea convertir:");
+            cantidad = teclado.nextDouble();
+            moneda = consulta.buscaMoneda(pesoMexicano,monedaDestino,cantidad);
+            System.out.println("El valor "+cantidad+ " ["+moneda.base_code()+"] "+"corresponde al valor final de =>> "+ moneda.conversion_result()+ " ["+moneda.target_code()+"]");
         }while(!salirMenu);
 
     }
